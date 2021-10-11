@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 @Component({
     selector: 'app-laptop-card',
@@ -9,10 +9,6 @@ import { Component } from "@angular/core";
 }
 )
 export class LaptopCardComponent{
-    Laptop: any = {
-        "Id":1,
-        "Name":"Hp",
-        "Type":"Pavilion",
-        "Price" : "85000"
-    }
+    @Input() laptop : any
+   
 }
