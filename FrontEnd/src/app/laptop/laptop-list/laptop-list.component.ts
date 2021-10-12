@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LaptopService } from 'src/app/services/laptop.service';
 
 @Component({
   selector: 'app-laptop-list',
@@ -6,55 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./laptop-list.component.css']
 })
 export class LaptopListComponent implements OnInit {
-  laptops: Array<any> = [
-    {
-      "Id":1,
-      "Name":"Hp",
-      "Type":"Pavilion",
-      "Price" : "85000"
-    },
+  laptops: any;
 
-    {
-        "Id":2,
-        "Name":"Lenavo",
-        "Type":"Unione",
-        "Price" : "115000"
-      },
-
-      {
-        "Id":3,
-        "Name":"Hp",
-        "Type":"Pavilion",
-        "Price" : "85000"
-      },
-
-      {
-        "Id":4,
-        "Name":"Hp",
-        "Type":"Pavilion",
-        "Price" : "85000"
-      },
-
-      {
-        "Id":5,
-        "Name":"Acer",
-        "Type":"Cipro",
-        "Price" : "95000"
-      },
-
-      {
-        "Id":6,
-        "Name":"Mac",
-        "Type":"Air book",
-        "Price" : "255000"
-      },
-
-
-  ]
-
-  constructor() { }
+  constructor(private laptopService:LaptopService) { }
 
   ngOnInit(): void {
+
+    this.laptopService.getAllLaptops().subscribe(
+      data => {
+            this.laptops = data;
+            console.log(data);
+      }, error =>{
+        console.log(error);
+        
+      }
+    );
+
   }
 
 }
