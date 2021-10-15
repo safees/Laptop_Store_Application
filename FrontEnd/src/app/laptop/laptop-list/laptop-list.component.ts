@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LaptopService } from 'src/app/services/laptop.service';
+import { ILaptop } from '../ILaptop.Interface';
 
 @Component({
   selector: 'app-laptop-list',
@@ -7,7 +8,7 @@ import { LaptopService } from 'src/app/services/laptop.service';
   styleUrls: ['./laptop-list.component.css']
 })
 export class LaptopListComponent implements OnInit {
-  laptops: any;
+  laptops: Array<ILaptop>;
 
   constructor(private laptopService:LaptopService) { }
 

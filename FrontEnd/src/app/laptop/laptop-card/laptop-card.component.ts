@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+import { ILaptop } from "../ILaptop.Interface";
 
 @Component({
     selector: 'app-laptop-card',
@@ -9,6 +10,6 @@ import { Component, Input } from "@angular/core";
 }
 )
 export class LaptopCardComponent{
-    @Input() laptop : any
+    @Input() laptop : ILaptop
    
 }
