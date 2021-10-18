@@ -9,10 +9,13 @@ import { LaptopListComponent } from './laptop/laptop-list/laptop-list.component'
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { LaptopService } from './services/laptop.service';
 import { AddLaptopComponent } from './laptop/add-laptop/add-laptop.component';
+import { LaptopDetailComponent } from './laptop/laptop-detail/laptop-detail.component';
 
 const appRoutes : Routes = [
   { path: '' , component : LaptopListComponent},
-  { path: 'add-laptop' , component : AddLaptopComponent}
+  { path: 'sell-laptop' , component : LaptopListComponent},
+  { path: 'add-laptop' , component : AddLaptopComponent},
+  { path: 'laptop-detail/:id' , component : LaptopDetailComponent}
 ]
 @NgModule({
   declarations: [	
@@ -20,7 +23,8 @@ const appRoutes : Routes = [
     LaptopCardComponent,
     LaptopListComponent,
     NavBarComponent,
-    AddLaptopComponent
+    AddLaptopComponent,
+    LaptopDetailComponent
    ],
   imports: [
     BrowserModule,
