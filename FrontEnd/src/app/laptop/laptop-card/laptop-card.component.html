@@ -1,7 +1,9 @@
 
 <div class="card" style="width: 22rem;">
     <div class="card-img-wrapper">
-        <img class="card-img-top" src="assets/images/hp_pavilion.png">
+        <img *ngIf="laptop.Image" class="card-img-top" src="assets/images/{{laptop.Image}}.png">
+        <img *ngIf="!laptop.Image" class="card-img-top" src="assets/images/defaultImage.png">
+
         <ul class="list-inline text-center member-icons animate">
             <li class="list-inline-item">
                 <button class="btn btn-primary" routerLink="/laptop-detail/{{laptop.Id}}"><i class="far fa-edit"></i></button>   

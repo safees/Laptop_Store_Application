@@ -1,42 +1,54 @@
 [{
     "Id":1,
+    "BuySell" : 1,
     "Name":"Hp",
     "Type":"Pavilion",
-    "Price" : "85000"
+    "Price" : "85000",
+    "Image" : "p3"
   },
 
   {
       "Id":2,
+      "BuySell" : 2,
       "Name":"Lenavo",
       "Type":"Unione",
-      "Price" : "115000"
+      "Price" : "115000",
+      "Image" : "p1"
     },
 
     {
       "Id":3,
+      "BuySell" : 1,
       "Name":"Hp",
       "Type":"Pavilion",
-      "Price" : "85000"
+      "Price" : "85000",
+      "Image" : "p4"
     },
 
     {
       "Id":4,
+      "BuySell" : 2,
       "Name":"Hp",
       "Type":"Pavilion",
-      "Price" : "85000"
+      "Price" : "85000",
+      "Image" : "p2"
     },
 
     {
       "Id":5,
+      "BuySell" : 1,
       "Name":"Acer",
       "Type":"Cipro",
-      "Price" : "95000"
+      "Price" : "95000",
+      "Image" : "p5"
     },
 
     {
       "Id":6,
+      "BuySell" : 2,
       "Name":"Mac",
       "Type":"Air book",
       "Price" : "255000"
+    
     }
 ]

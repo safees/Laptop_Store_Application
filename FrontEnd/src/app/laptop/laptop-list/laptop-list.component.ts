@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { LaptopService } from 'src/app/services/laptop.service';
 import { ILaptop } from '../ILaptop.Interface';
 
@@ -8,16 +9,20 @@ import { ILaptop } from '../ILaptop.Interface';
   styleUrls: ['./laptop-list.component.css']
 })
 export class LaptopListComponent implements OnInit {
+  BuySell = 1;
   laptops: Array<ILaptop>;
 
-  constructor(private laptopService:LaptopService) { }
+  constructor(private route:ActivatedRoute , private laptopService:LaptopService) { }
 
   ngOnInit(): void {
-
-    this.laptopService.getAllLaptops().subscribe(
+    if(this.route.snapshot.url.toString()){
+      this.BuySell = 2;
+    }
+    this.laptopService.getAllLaptops(this.BuySell).subscribe(
       data => {
             this.laptops = data;
             console.log(data);
+           
       }, error =>{
         console.log(error);
         

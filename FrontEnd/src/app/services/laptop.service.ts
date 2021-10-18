@@ -11,12 +11,12 @@ export class LaptopService {
 
   constructor(private http:HttpClient) { }
 
-  getAllLaptops():Observable<ILaptop[]> {
+  getAllLaptops(BuySell:number):Observable<ILaptop[]> {
    return this.http.get('data/laptops.json').pipe(
      map(data => {
        const laptopsArray : Array<ILaptop> = [];
         for(const id in data){
-          if(data.hasOwnProperty(id)){
+          if(data.hasOwnProperty(id) && data[id].BuySell === BuySell){
           laptopsArray.push(data[id]);
         }
         }

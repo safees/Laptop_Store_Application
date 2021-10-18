@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-laptop-detail',
@@ -8,10 +8,21 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class LaptopDetailComponent implements OnInit {
 public laptopId: number;
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute,private router:Router) { }
 
   ngOnInit() {
-    this.laptopId = this.route.snapshot.params['id'];
+    // this.laptopId = Number(this.route.snapshot.params['id']);
+
+    this.laptopId = +this.route.snapshot.params['id'];
+
+    this.route.params.subscribe((params) =>{
+      this.laptopId = +params['id'];
+    })
+  }
+
+  onSelectNext(){
+    this.laptopId += 1 ;
+    this.router.navigate(['laptop-detail',this.laptopId])
   }
 
 }

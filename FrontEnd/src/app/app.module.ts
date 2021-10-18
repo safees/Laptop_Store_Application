@@ -15,7 +15,8 @@ const appRoutes : Routes = [
   { path: '' , component : LaptopListComponent},
   { path: 'sell-laptop' , component : LaptopListComponent},
   { path: 'add-laptop' , component : AddLaptopComponent},
-  { path: 'laptop-detail/:id' , component : LaptopDetailComponent}
+  { path: 'laptop-detail/:id' , component : LaptopDetailComponent},
+  { path: '**' , component : LaptopListComponent}
 ]
 @NgModule({
   declarations: [	
