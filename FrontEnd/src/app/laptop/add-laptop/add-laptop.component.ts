@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-laptop.component.css']
 })
 export class AddLaptopComponent implements OnInit {
-
+  @ViewChild('Form') addLaptopForm:NgForm;
   constructor(private router : Router) { }
 
   ngOnInit() {
@@ -15,6 +16,11 @@ export class AddLaptopComponent implements OnInit {
 
   onBack(){
     this.router.navigate(['/']);
+  }
+
+  onSubmit(){
+    console.log("Form is working,its submitted");
+    console.log(this.addLaptopForm);
   }
 
 }

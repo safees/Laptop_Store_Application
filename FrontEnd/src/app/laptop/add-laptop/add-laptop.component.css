@@ -1,0 +1,11 @@
+button{
+    margin: 13px 12px 12px 10px;
+  }
+
+  .ng-invalid.ng-touched{
+    border-color: red;
+  }
+
+  .error-block{
+    color: red;
+  }
