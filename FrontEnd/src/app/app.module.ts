@@ -13,6 +13,7 @@ import { AddLaptopComponent } from './laptop/add-laptop/add-laptop.component';
 import { LaptopDetailComponent } from './laptop/laptop-detail/laptop-detail.component';
 import { UserLoginComponent } from './user/user-login/user-login/user-login.component';
 import { UserRegistrationComponent } from './user/user-registration/user-registration/user-registration.component';
+import { UserServiceService } from './services/user-service.service';
 
 const appRoutes : Routes = [
   { path: '' , component : LaptopListComponent},
@@ -42,7 +43,8 @@ const appRoutes : Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
-    LaptopService
+    LaptopService,
+    UserServiceService
   ],
   bootstrap: [AppComponent]
 })
