@@ -14,6 +14,7 @@ import { LaptopDetailComponent } from './laptop/laptop-detail/laptop-detail.comp
 import { UserLoginComponent } from './user/user-login/user-login/user-login.component';
 import { UserRegistrationComponent } from './user/user-registration/user-registration/user-registration.component';
 import { UserServiceService } from './services/user-service.service';
+import { AlertifyService } from './services/alertify.service';
 
 const appRoutes : Routes = [
   { path: '' , component : LaptopListComponent},
@@ -44,7 +45,8 @@ const appRoutes : Routes = [
   ],
   providers: [
     LaptopService,
-    UserServiceService
+    UserServiceService,
+    AlertifyService
   ],
   bootstrap: [AppComponent]
 })
