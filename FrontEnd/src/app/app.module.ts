@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from "@angular/common/http"
 import { Routes,RouterModule} from '@angular/router'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { AppComponent } from './app.component';
 import { LaptopCardComponent } from './laptop/laptop-card/laptop-card.component';
@@ -15,6 +17,8 @@ import { UserLoginComponent } from './user/user-login/user-login/user-login.comp
 import { UserRegistrationComponent } from './user/user-registration/user-registration/user-registration.component';
 import { UserServiceService } from './services/user-service.service';
 import { AlertifyService } from './services/alertify.service';
+import { AuthService } from './services/auth.service';
+
 
 const appRoutes : Routes = [
   { path: '' , component : LaptopListComponent},
@@ -41,12 +45,17 @@ const appRoutes : Routes = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    BsDropdownModule.forRoot(),
+    BrowserAnimationsModule,
+    BrowserAnimationsModule,
+    BsDropdownModule.forRoot()
   ],
   providers: [
     LaptopService,
     UserServiceService,
-    AlertifyService
+    AlertifyService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
