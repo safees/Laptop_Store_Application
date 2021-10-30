@@ -1,4 +1,18 @@
-button{
+/* button{
     margin: 13px 12px 12px 10px;
+  } */
+
+  .photo-control{
+    min-height: 300px;
+    vertical-align: middle;
+    text-align: center;
+    border:1px dashed blue;
+    margin: 5px;
   }
+
+  #sellrent {
+    margin-right: 10px;
+  }
+
+ 
 
