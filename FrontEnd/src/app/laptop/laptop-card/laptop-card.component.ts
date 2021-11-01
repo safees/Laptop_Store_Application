@@ -1,5 +1,6 @@
 import { Component, Input } from "@angular/core";
-import { ILaptop } from "../ILaptop.Interface";
+import { ILaptopBase } from "src/app/model/ilaptopbase";
+
 
 @Component({
     selector: 'app-laptop-card',
@@ -10,6 +11,7 @@ import { ILaptop } from "../ILaptop.Interface";
 }
 )
 export class LaptopCardComponent{
-    @Input() laptop : ILaptop
+    @Input() laptop : ILaptopBase;
+    @Input() hideIcons : boolean;
    
 }

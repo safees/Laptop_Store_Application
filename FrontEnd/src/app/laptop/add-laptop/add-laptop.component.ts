@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
-import { ILaptop } from '../ILaptop.Interface';
+import { ILaptopBase } from 'src/app/model/ilaptopbase';
+
 
 @Component({
   selector: 'app-add-laptop',
@@ -14,15 +15,21 @@ export class AddLaptopComponent implements OnInit {
   @ViewChild('formTabs')formTabs: TabsetComponent;
 
   laptopTypes:Array<string>=['Notebook','Ultrabook','Chromebook', 'Macbook' , 'Hybrid (2 in 1 Laptop)',' Gaming laptops']
-  brands:Array<string>=['Acer','Apple iMac', 'Apple iPad' ,'Dell',' Hp','Intel',
+  brands:Array<string>=['Acer','Apple iMac', 'Apple iPad' ,'Dell',' Hp',
                         'Lenavo','Microsoft','Other Brand']
 
-  laptopView:ILaptop = {
+  laptopView : ILaptopBase = {
     Id: null,
     Name: null,
     Price: null,
     BuySell:null,
-    Type : null
+    MYear : null,
+    LType :null,
+    Brand : null,
+    Address :null,
+    Generation :null,
+    
+
   };
 
   constructor(private router : Router) { }
@@ -36,6 +43,7 @@ export class AddLaptopComponent implements OnInit {
 
   onSubmit(){
     console.log("Form is working,its submitted");
+    console.log('BuySell=' + this.addLaptopForm.value.BasicInfo.BuySell);
     console.log(this.addLaptopForm);
   }
 

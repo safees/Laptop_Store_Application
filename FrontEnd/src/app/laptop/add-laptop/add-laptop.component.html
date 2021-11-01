@@ -1,5 +1,5 @@
 <div class="row mb-5">
- <div class="col-8">
+ <div class="col-8 shadow-lg p-0 bg-white">
     <div class="card">
       <div class="card-header">
        <h3>Add New Laptop</h3> 
@@ -8,202 +8,210 @@
       <div class="card-body">
         <form (ngSubmit)='onSubmit()' #Form="ngForm">
 
-          <div>
-            <tabset #formTabs>
-          <tab heading="Basic Info">
-            <div class="mb-3">
-              <p>I Want to</p>
+        <div class="tab-panel">
+          <tabset class="member-tabset" #formTabs>
+                <tab heading="Basic Info" ngModelGroup="BasicInfo" #BasicInfo="ngModelGroup">
+                  <div class="mb-3">
+                    <p>I Want to</p>
 
-              <div class="btn-group" btnRadioGroup>
+                    <div class="btn-group" btnRadioGroup ngModel name="BuySell" required>
 
-              <label id="sellrent" class="btn btn-outline-primary"
-              btnRadio=1 role="button" name="SellRent">Sell</label>
+                    <label id="sellrent" class="btn btn-outline-primary"
+                    btnRadio=1 tabindex="0" role="button" name="BuySell">Buy</label>
 
-              <label class="btn btn-outline-primary"
-              btnRadio=2
-              role="button" name="SellRent">Rent</label>
+                    <label class="btn btn-outline-primary"
+                    btnRadio=2 tabindex="0" role="button" name="BuySell">Rent</label>
 
+                  </div>
+
+                </div>
+
+                <div class="mb-3 ">
+                  <p>Laptop Type</p>
+                  <div class="btn-group" btnRadioGroup name="lapType"
+                  [(ngModel)]="laptopView.LType"
+                  >
+                    
+                  <label
+                  *ngFor="let ltypes of laptopTypes"
+                  id="sellrent" class="btn btn-outline-primary"
+                  [btnRadio]="ltypes" role="button" name="SellRent">{{ltypes}}</label>
+                
+
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <p> Brand </p>
+                <div class="btn-group" btnRadioGroup
+                [(ngModel)]="laptopView.Brand"
+                name="brand"
+                >
+                
+                <label 
+                *ngFor="let brand of brands"
+                id="sellrent" class="btn btn-outline-primary"
+                [btnRadio]="brand" role="button" name="SellRent">{{brand}}</label>
+              </div>
+              
             </div>
 
+            <div class="mb-3">
+              <p>Generation</p>
+              <div class="btn-group" btnRadioGroup
+              [(ngModel)]="laptopView.Generation"
+              name="generation"
+              >
+
+              <label 
+              *ngFor="let generation of [3,5,7,9,11]"
+              id="sellrent" class="btn btn-outline-primary"
+              [btnRadio]="generation" role="button" name="SellRent">{{generation}}</label>
+
+            </div>
           </div>
 
-          <div class="mb-3 ">
-            <p>Laptop Type</p>
-            <div class="btn-group" btnRadioGroup name="lapType"
-            [(ngModel)]="laptopView.Type"
-            >
-              
-            <label
-            *ngFor="let ltypes of laptopTypes"
-            id="sellrent" class="btn btn-outline-primary"
-            [btnRadio]="ltypes" role="button" name="SellRent">{{ltypes}}</label>
-          
 
-          </div>
-        </div>
+                      <div class="mb-3">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" 
+                        #lapName="ngModel" 
+                        ngModel name ="Name" 
+                        required
+                        minlength="5"
+                        [(ngModel)]="laptopView.Name"
+                        >
+                        <span *ngIf="!lapName.valid && lapName.touched"class="error-block">
+                          <span *ngIf="lapName.errors.required">Please enter the name</span>
+                          <span *ngIf="lapName.errors.minlength">Name should be atleast 5 character</span>
+                        </span>
+                      </div>
+                
+                      <div class="mb-3">
+                        <label for="type">Model Year</label>
+                        <input type="text" class="form-control" ngModel name ="MYear"
+                        [(ngModel)]="laptopView.MYear">
+                      </div>
+                
+                      <div class="mb-3">
+                      <button  type="button" class="btn btn-primary w-100" 
+                      (click)="selectTab(1)" 
+                      [disabled]="!BasicInfo.valid"> Next</button>
+                    </div>
 
-        <div class="mb-3">
-          <p> Brand </p>
-          <div class="btn-group" btnRadioGroup>
-          
-          <label 
-          *ngFor="let brand of brands"
-          id="sellrent" class="btn btn-outline-primary"
-          [btnRadio]="brand" role="button" name="SellRent">{{brand}}</label>
-        </div>
-        
-      </div>
+                </tab>
 
-      <div class="mb-3">
-        <p>Generation</p>
-        <div class="btn-group" btnRadioGroup>
-
-        <label 
-        *ngFor="let generation of [3,5,7,9,11]"
-        id="sellrent" class="btn btn-outline-primary"
-        [btnRadio]="generation" role="button" name="SellRent">{{generation}}</label>
-
-      </div>
-    </div>
-
-
-                <div class="mb-3">
-                  <label for="name">Name</label>
-                  <input type="text" class="form-control" 
-                  #lapName="ngModel" 
-                  ngModel name ="Name" 
-                  required
-                  minlength="5"
-                  [(ngModel)]="laptopView.Name"
-                  >
-                  <span *ngIf="!lapName.valid && lapName.touched"class="error-block">
-                    <span *ngIf="lapName.errors.required">Please enter the name</span>
-                    <span *ngIf="lapName.errors.minlength">Name should be atleast 5 character</span>
-                  </span>
+                <tab heading="Price Information">
+                  <div class="mb-3">
+                    <label>Price (in LKR)</label>
+                  <input type="text" class="form-control" name="price"
+                  [(ngModel)]="laptopView.Price">
                 </div>
-          
+                
                 <div class="mb-3">
-                  <label for="type">Type</label>
-                  <input type="text" class="form-control" ngModel name ="Type">
+                    <label>Price (in USD)</label>
+                    <input type="text" class="form-control">
                 </div>
-          
+                
                 <div class="mb-3">
-                <button  type="button" class="btn btn-primary w-100" (click)="selectTab(1)" > Next</button>
-              </div>
-
-              </tab>
-
-              <tab heading="Price Information">
-                <div class="mb-3">
-                  <label>Price (in LKR)</label>
-                <input type="text" class="form-control" name="price"
-                [(ngModel)]="laptopView.Price">
-              </div>
-              
-              <div class="mb-3">
-                  <label>Price (in USD)</label>
+                    <label>Adjustable Price (in LKR)</label>
                   <input type="text" class="form-control">
-              </div>
-              
-              <div class="mb-3">
-                  <label>Adjustable Price (in LKR)</label>
-                <input type="text" class="form-control">
-              </div>
-          
+                </div>
+            
+                  <div class="mb-3">
+                  <button  type="button" class="btn btn-primary w-100" (click)="selectTab(2)" > Next</button>
+                </div>
                 <div class="mb-3">
-                <button  type="button" class="btn btn-primary w-100" (click)="selectTab(2)" > Next</button>
-              </div>
-              <div class="mb-3">
-                <button  type="button" class="btn btn-primary w-100" (click)="selectTab(0)" > Back</button>
-              </div>
-              </tab>
+                  <button  type="button" class="btn btn-primary w-100" (click)="selectTab(0)" > Back</button>
+                </div>
+                </tab>
 
-              <tab heading="Contact Informations">
+                <tab heading="Contact Informations">
+                  <div class="mb-3">
+                    <label>Address</label>
+                  <input type="text" class="form-control">
+                </div>
+                
                 <div class="mb-3">
-                  <label>Address</label>
+                  <label>Contact Phone No 1</label>
                 <input type="text" class="form-control">
               </div>
-              
+                
               <div class="mb-3">
-                <label>Contact Phone No 1</label>
+                <label>Contact Phone No 2</label>
               <input type="text" class="form-control">
             </div>
-              
+                
             <div class="mb-3">
-              <label>Contact Phone No 2</label>
+              <label>Email</label>
             <input type="text" class="form-control">
           </div>
+                  <div class="mb-3">
+                    <button  type="button" class="btn btn-primary w-100" (click)="selectTab(3)" > Next</button>
+                  </div>
+                  <div class="mb-3">
+                    <button  type="button" class="btn btn-primary w-100" (click)="selectTab(1)" > Back</button>
+                  </div>
+                </tab>
+
+                <tab heading="Other Details">
+                  <div class="mb-3">
+                    <label class="form-check-label"> Ready to move</label> <br/>
+                    <input  type="radio" name="RTM" id="Yes" value='1'>
+                    <label class="m-2"> Yes</label>
+                  
+                    <input  type="radio" name="RTM" id="No" value='2'>
+                    <label class="m-2"> No</label>
+                  </div> 
+
+                  
+                  
+                  <div class="mb-3 col-3">
+                    <label>Available from</label>
+                    <input type="text"
+                placeholder="Datepicker"
+                class="form-control"
+                bsDatepicker 
+                [bsConfig]="{containerClass:'theme-dark-blue',dateInputFormat: 'DD-MM-YYYY'}">
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label>Used period</label>
+                    <input type="text" class="form-control">
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label>Descriptions</label>
+                    <textarea class="form-control" placeholder="Tell something about product" style="height: 100px"></textarea>
+                  </div>
+                  
+                  <div class="mb-3">
+                    <button  type="button" class="btn btn-primary w-100" (click)="selectTab(4)" > Next</button>
+                  </div>
+                  <div class="mb-3">
+                    <button  type="button" class="btn btn-primary w-100" (click)="selectTab(2)" > Back</button>
+                  </div>
+                </tab>
+
+                <tab heading="Photo"> 
+                  <div class="mb-3">
+                    <div class="photo-control">
+                      <button class="mt-5" type="button">Upload Your Pic</button>
+                    </div>
+                  </div>
+                  
+                  <div class="mb-3">
+                    <button  type="button" class="btn btn-primary w-100" (click)="selectTab(3)" > Back</button>
+                  </div> 
+                    <div class="mb-3">
+                    <button  type="reset" class="btn btn-primary w-100" > Cancel</button>
+                    </div>
+                    <div class="mb-3">
+                    <button  type="submit" class="btn btn-primary w-100" > Save</button>
+                  </div> 
               
-          <div class="mb-3">
-            <label>Email</label>
-          <input type="text" class="form-control">
-        </div>
-                <div class="mb-3">
-                  <button  type="button" class="btn btn-primary w-100" (click)="selectTab(3)" > Next</button>
-                </div>
-                <div class="mb-3">
-                  <button  type="button" class="btn btn-primary w-100" (click)="selectTab(1)" > Back</button>
-                </div>
-              </tab>
 
-              <tab heading="Other Details">
-                <div class="mb-3">
-                  <label class="form-check-label"> Ready to move</label> <br/>
-                  <input  type="radio" name="RTM" id="Yes" value='1'>
-                  <label class="m-2"> Yes</label>
-                
-                  <input  type="radio" name="RTM" id="No" value='2'>
-                  <label class="m-2"> No</label>
-                </div> 
-
-                
-                
-                <div class="mb-3 col-3">
-                  <label>Available from</label>
-                  <input type="text"
-              placeholder="Datepicker"
-              class="form-control"
-              bsDatepicker 
-              [bsConfig]="{containerClass:'theme-dark-blue',dateInputFormat: 'DD-MM-YYYY'}">
-                </div>
-                
-                <div class="mb-3">
-                  <label>Used period</label>
-                  <input type="text" class="form-control">
-                </div>
-                
-                <div class="mb-3">
-                  <label>Descriptions</label>
-                  <textarea class="form-control" placeholder="Tell something about product" style="height: 100px"></textarea>
-                </div>
-                
-                <div class="mb-3">
-                  <button  type="button" class="btn btn-primary w-100" (click)="selectTab(4)" > Next</button>
-                </div>
-                <div class="mb-3">
-                  <button  type="button" class="btn btn-primary w-100" (click)="selectTab(2)" > Back</button>
-                </div>
-              </tab>
-
-              <tab heading="Photo"> 
-                <div class="mb-3">
-                  <div class="photo-control">
-                    <button class="mt-5" type="button">Upload Your Pic</button>
-                  </div>
-                </div>
-                
-                <div class="mb-3">
-                  <button  type="button" class="btn btn-primary w-100" (click)="selectTab(3)" > Back</button>
-                </div> 
-                  <div class="mb-3">
-                  <button  type="reset" class="btn btn-primary w-100" > Cancel</button>
-                  </div>
-                  <div class="mb-3">
-                  <button  type="submit" class="btn btn-primary w-100" > Save</button>
-                </div> 
-            
-
-              </tab>
+                </tab>
 
             </tabset>
           </div>
@@ -214,13 +222,16 @@
       </div>
     </div>
   </div>
+
 <div class="col-4">
   <div class="card-header">
-  <h3>Your Laptop Review</h3>
-<div>
-  <app-laptop-card [laptop]="laptopView"></app-laptop-card>
+    <h3>Your Laptop Review</h3>
+  </div>
+      <div class="shadow-lg p-3 bg-white">
+        <app-laptop-card [laptop]="laptopView" hideIcons="true"></app-laptop-card>
+      </div>
+ 
 </div>
-</div>
-</div>
+
 </div>
   
